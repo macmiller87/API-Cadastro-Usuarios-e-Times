@@ -1,0 +1,29 @@
+{
+  "name": "API-Cadastro-Usuarios-e-Times",
+  "version": "1.0.0",
+  "main": "server.ts",
+  "author": "Macmiller <macamagolf@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node src/server.ts",
+    "build": "tsc",
+    "typeorm": "typeorm-ts-node-commonjs"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "pg": "^8.7.3",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.6",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.43",
+    "@types/uuid": "^8.3.4",
+    "ts-node": "10.8.1",
+    "typescript": "^4.7.3"
+  }
+}
