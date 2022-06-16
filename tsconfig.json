@@ -1,11 +1,11 @@
-
 {
   "compilerOptions": {
     "target": "es2016",
      "experimentalDecorators": true,                   
      "emitDecoratorMetadata": true, 
     "module": "commonjs",
-    "rootDir": "./",                                                      
+    "rootDir": "./",
+    "baseUrl": "./src",                                                      
      "resolveJsonModule": true,                        
      "outDir": "./dist",                               
     "esModuleInterop": true,                 
