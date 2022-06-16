@@ -1,6 +1,6 @@
 import { UsersRepository } from "../repositories/UsersRepository";
 import { CreateUsersController } from "./CreateUsersController";
-import { CreateUsersUseCase } from "./CreateUsersUseCse";
+import { CreateUsersUseCase } from "./CreateUsersUseCase";
 
 export default (): CreateUsersController => {
 
