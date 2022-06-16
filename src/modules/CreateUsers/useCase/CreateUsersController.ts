@@ -5,9 +5,9 @@ class CreateUsersController {
 
     constructor(private createUsersUseCase: CreateUsersUseCase) {}
 
-    async handle(requet: Request, response: Response): Promise<Response> {
+    async handle(request: Request, response: Response): Promise<Response> {
 
-        const { username, userAvatar, email } = requet.body; 
+        const { username, userAvatar, email } = request.body; 
 
         await this.createUsersUseCase.execute({
             username,
