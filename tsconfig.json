@@ -7,6 +7,7 @@
     "rootDir": "./",
     "baseUrl": "./src",
     "paths": {
+      "@config/*": ["config/*"],
       "@database/*": ["database/*"],
       "@modules/*": ["modules/*"],
       "@routes/*": ["routes/*"],
