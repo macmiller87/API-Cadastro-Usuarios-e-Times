@@ -1,9 +1,11 @@
+import "reflect-metadata";
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
+import "@utils/container/index";
 import cors from "cors";
-import { router } from "./routes";
-import { createConnection } from "./database/data-source";
-import { AppError } from "./utils/errors/AppError";
+import { router } from "@routes/index";
+import { createConnection } from "@database/data-source";
+import { AppError } from "@utils/errors/AppError";
 
 createConnection();
 
