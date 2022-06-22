@@ -1,7 +1,10 @@
 import "reflect-metadata";
+import "dotenv/config";
 import { DataSource } from "typeorm";
+
 import { Users } from "../modules/CreateUsers/entities/Users";
-import { CreateUsers1655346386730 } from "./migrations/1655346386730-CreateUsers";
+
+import { CreateUser1655711870659 } from "./migrations/1655711870659-CreateUser";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -14,7 +17,9 @@ export const AppDataSource = new DataSource({
     database: process.env.POSTGRES_DATABASE,
     entities: [Users],
     subscribers: [],
-    migrations: [CreateUsers1655346386730]
+    migrations: [
+        CreateUser1655711870659,
+    ]
 });
 
 export async function createConnection() {
@@ -31,4 +36,3 @@ export async function createConnection() {
 // export function createConnection(host = "database"): Promise<DataSource> {
 //     return dataSource.setOptions({ host }).initialize();
 // }
-
