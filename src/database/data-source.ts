@@ -3,8 +3,12 @@ import "dotenv/config";
 import { DataSource } from "typeorm";
 
 import { Users } from "../modules/CreateUsers/entities/Users";
+import { Teams } from "../modules/CreateUserTeams/entities/Teams";
+import { UsersToken } from "../modules/CreateUsers/entities/UsersToken";
 
 import { CreateUser1655711870659 } from "./migrations/1655711870659-CreateUser";
+import { CreateUsersToken1655784996610 } from "./migrations/1655784996610-CreateUsersToken";
+
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -15,10 +19,11 @@ export const AppDataSource = new DataSource({
     username: process.env.POSTGRES_USERNAME,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DATABASE,
-    entities: [Users],
+    entities: [Users, Teams, UsersToken],
     subscribers: [],
     migrations: [
         CreateUser1655711870659,
+        CreateUsersToken1655784996610
     ]
 });
 

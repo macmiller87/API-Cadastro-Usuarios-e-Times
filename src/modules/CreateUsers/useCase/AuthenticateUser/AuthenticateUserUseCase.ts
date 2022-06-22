@@ -54,6 +54,6 @@ class AuthenticateUserUseCase {
         };
     };
     
-};
+}; 
 
 export { AuthenticateUserUseCase };
