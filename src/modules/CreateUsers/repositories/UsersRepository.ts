@@ -31,20 +31,20 @@ class UsersRepository implements IUsersRepository {
         return userByusername;
     };
 
+    async findByEmail(email: string): Promise<Users> {
+        const userByemail = await this.usersRepository.findOneBy({ email });
+        return userByemail;
+    };
+
     async findByUserId(user_id: string): Promise<Users> {
         const userByid = await this.usersRepository.findOneBy({ user_id });
         return userByid;
     };
 
-    async findByEmail(email: string): Promise<Users> {
-        const userByemail = await this.usersRepository.findOneBy({ email });
-        return userByemail;
-    }
-
-    async ListUsers(): Promise<Users[]> {
-        const user = await this.usersRepository.find({ relations: { teams: true } });
-        return user;
-    };
+    // async ListUser(user_id: string): Promise<Users[]> {
+    //     const user = await this.usersRepository.find({ relations: { teams: true } });
+    //     return user;
+    // };
 };
 
 export { UsersRepository };

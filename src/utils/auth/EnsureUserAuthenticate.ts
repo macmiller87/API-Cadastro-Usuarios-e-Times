@@ -1,4 +1,4 @@
-import { NextFunction, Request } from "express";
+import { NextFunction, Request, Response } from "express";
 import { AppError } from "../errors/AppError";
 import { verify } from "jsonwebtoken";
 import authConfig from "@config/authConfig";
@@ -7,7 +7,7 @@ interface IPayload {
     sub: string;
 }
 
-export async function EnsureUserAuthenticate(request: Request, response: Response, next: NextFunction) {
+export async function ensureUserAuthenticate(request: Request, response: Response, next: NextFunction) {
 
     const authHeader = request.headers.authorization;
 
