@@ -6,7 +6,7 @@ class ListUserController {
 
     async handle(request: Request, response: Response): Promise<Response> {
 
-        const { user_id} = request.user;
+        const { user_id } = request.user;
 
         const listUserUseCase = container.resolve(ListUserUseCase);
 
