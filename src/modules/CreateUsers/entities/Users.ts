@@ -23,7 +23,7 @@ class Users {
     @CreateDateColumn()
     created_at: Date;
     
-    @OneToMany((type) => Teams, (team) => team.user, { eager: true,})
+    @OneToMany((type) => Teams, (team) => team.user, { eager: true })
     teams: Teams[]
 
     constructor() {
