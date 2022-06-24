@@ -1,6 +1,6 @@
 import { IUserRenponseDTO } from "./IUserRenponseDTO";
+import { Users } from "../../entities/Users";
 import { instanceToInstance } from "class-transformer";
-import { Users } from "@modules/CreateUsers/entities/Users";
 
 class UserMap {
 
@@ -10,11 +10,12 @@ class UserMap {
             user_id,
             username,
             userAvatar,
-            email,
+            email
         });
 
         return user;
     };
+
 };
 
 export { UserMap };

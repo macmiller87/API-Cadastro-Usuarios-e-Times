@@ -19,6 +19,7 @@ class CreateUsersController {
 
         return response.status(201).json(createUser);
     };
+    
 };
 
 export { CreateUsersController };

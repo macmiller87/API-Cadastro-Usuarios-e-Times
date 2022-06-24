@@ -1,9 +1,9 @@
+import { inject, injectable } from "tsyringe";
+import { hash } from "bcryptjs";
 import { AppError } from "@utils/errors/AppError";
 import { ICreateUsersDTO } from "@modules/CreateUsers/dtos/ICreateUsersDTO";
 import { Users } from "@modules/CreateUsers/entities/Users";
 import { IUsersRepository } from "@modules/CreateUsers/repositories/InplementationsRepository/IUsersRepository";
-import { hash } from "bcryptjs";
-import { inject, injectable } from "tsyringe";
 
 @injectable()
 class CreateUsersUseCase {
@@ -28,6 +28,7 @@ class CreateUsersUseCase {
 
         return user;
     };
+    
 };
 
 export { CreateUsersUseCase };

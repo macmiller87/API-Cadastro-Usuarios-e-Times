@@ -3,6 +3,6 @@ interface IUserRenponseDTO {
     username: string;
     userAvatar: string;
     email: string;
-}
+};
 
 export { IUserRenponseDTO };

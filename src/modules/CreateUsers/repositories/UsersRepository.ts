@@ -37,14 +37,27 @@ class UsersRepository implements IUsersRepository {
     };
 
     async findByUserId(user_id: string): Promise<Users> {
-        const userByid = await this.usersRepository.findOneBy({ user_id });
-        return userByid;
+        const userById = await this.usersRepository.findOneBy({ user_id });
+        return userById;
+    }
+
+    async listUser(user_id: string): Promise<Users> {
+        const user = await this.usersRepository.findOneBy({ user_id });
+        return user;
     };
 
-    // async ListUser(user_id: string): Promise<Users[]> {
-    //     const user = await this.usersRepository.find({ relations: { teams: true } });
-    //     return user;
-    // };
+    async listUserAndTeams(user_id: string): Promise<Users[]> {
+        const userTeams = await this.usersRepository.find({
+            relations: {
+                teams: true
+            },
+            where: {
+                user_id: user_id
+            }   
+        });
+        return userTeams;
+    };
+
 };
 
 export { UsersRepository };
