@@ -3,7 +3,7 @@ import { CreateUserTeamsController } from "@modules/CreateUserTeams/useCase/Crea
 import { ListSpecifcTeamController } from "@modules/CreateUserTeams/useCase/ListSpecifcTeam/ListSpecifcTeamController";
 import { ensureUserAuthenticate } from "@utils/auth/EnsureUserAuthenticate";
 import { router } from ".";
-import { DeletSpecifcTeamController } from "@modules/CreateUserTeams/useCase/DeleteUserTeam/DeleteSpecifcTeamCotroller";
+import { DeletSpecifcTeamController } from "@modules/CreateUserTeams/useCase/DeleteUserTeam/DeleteSpecifcTeamController";
 
 const createUserTeamsRoute = Router();
 const listSpecifTeamRoute = Router();

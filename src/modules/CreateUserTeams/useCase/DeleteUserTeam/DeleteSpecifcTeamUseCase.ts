@@ -10,7 +10,6 @@ class DeleteSpecifcTeamUseCase {
     async execute(team_id: string): Promise<void> {
 
         try {
-
             await this.teamsRepository.findByTeamId(team_id);
 
             await this.teamsRepository.deleteTeam(team_id);
