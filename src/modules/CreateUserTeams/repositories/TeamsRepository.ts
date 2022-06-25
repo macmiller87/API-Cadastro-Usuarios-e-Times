@@ -31,6 +31,20 @@ class TeamsRepository implements IUsersTeamsRepository {
         return teams;
     };
 
+    async findByTeamId(team_id: string): Promise<Teams> {
+        const teamById = await this.teamsRepository.findOneBy({ team_id });
+        return teamById;
+    };
+
+    async deleteTeam(team_id: string): Promise<void> {
+        await this.teamsRepository
+        .createQueryBuilder()
+        .delete()
+        .from(Teams)
+        .where("team_id = :team_id", { team_id: team_id })
+        .execute()
+    };
+
     async listSpecifTeam(team_id: string): Promise<Teams[]> {
         const teams = await this.teamsRepository.find({
             where: {
