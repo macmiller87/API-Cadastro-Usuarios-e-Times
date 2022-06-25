@@ -7,6 +7,7 @@ interface IUsersRepository {
     findByEmail(email: string): Promise<Users>;
     findByUserId(user_id: string): Promise<Users>;
     listUser(user_id: string): Promise<Users>;
+    deleteUser(user_id: string): Promise<void>;
     listUserAndTeams(user_id: string): Promise<Users[]>;
 };
 

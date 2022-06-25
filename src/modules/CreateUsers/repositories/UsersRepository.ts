@@ -46,6 +46,15 @@ class UsersRepository implements IUsersRepository {
         return user;
     };
 
+    async deleteUser(user_id: string): Promise<void> {
+        await this.usersRepository
+        .createQueryBuilder()
+        .delete()
+        .from(Users)
+        .where("user_id = :user_id", { user_id: user_id })
+        .execute()
+    };
+
     async listUserAndTeams(user_id: string): Promise<Users[]> {
         const userTeams = await this.usersRepository.find({
             relations: {
