@@ -10,7 +10,6 @@ class DeleteUserUseCase {
     async execute(user_id: string): Promise<void> {
 
         try {
-
             await this.usersRepository.findByUserId(user_id);
 
             await this.usersRepository.deleteUser(user_id);

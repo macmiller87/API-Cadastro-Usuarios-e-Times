@@ -16,8 +16,7 @@ class ListUserTeamsUseCase {
             return listUserTeams;
 
         }catch(error) {
-            throw new AppError("User Not Found!", 404);
-            
+            throw new AppError("User Not Found!", 404);  
         }
     };
 

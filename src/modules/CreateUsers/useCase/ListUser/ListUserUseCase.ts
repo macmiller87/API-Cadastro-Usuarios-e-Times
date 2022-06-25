@@ -18,7 +18,6 @@ class ListUserUseCase {
 
         }catch(error) {
             throw new AppError("User Not Found!", 404);
-            
         }
     };
 
