@@ -5,14 +5,14 @@
      "emitDecoratorMetadata": true, 
     "module": "commonjs",
     "rootDir": "./",
-    "baseUrl": "./src",
+    "baseUrl": "./src",                              
     "paths": {
+      "@modules/*": ["modules/*"],
       "@config/*": ["config/*"],
       "@database/*": ["database/*"],
-      "@modules/*": ["modules/*"],
       "@routes/*": ["routes/*"],
-      "@utils/*": ["utils/*"],
-    },                                                      
+      "@utils/*": ["utils/*"]
+    },                                  
      "resolveJsonModule": true,                        
      "outDir": "./dist",                               
     "esModuleInterop": true,                 
