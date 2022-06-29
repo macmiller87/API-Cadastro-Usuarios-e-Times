@@ -30,14 +30,11 @@ export const AppDataSource = new DataSource({
 export async function createConnection(host = process.env.POSTGRES_HOST): Promise<DataSource> {
     
     try{
+        const connect = await AppDataSource.setOptions({ host }).initialize();
         console.log("Database Connected 📦");
-        return await AppDataSource.setOptions({ host }).initialize();
+        return connect;
     }catch(error){
         console.log("Error During Connection", error);
     }
     
 };
-
-// export function createConnection(host = "database"): Promise<DataSource> {
-//     return dataSource.setOptions({ host }).initialize();
-// }

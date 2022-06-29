@@ -15,7 +15,7 @@ class DeleteUserUseCase {
             await this.usersRepository.deleteUser(user_id);
 
         }catch(error) {
-            throw new AppError("User Not Found!");
+            throw new AppError("User Not Found!", 404);
         }
     };
 
