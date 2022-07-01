@@ -28,6 +28,6 @@ export async function ensureUserAuthenticate(request: Request, response: Respons
         next();
         
     }catch {
-        throw new AppError("Invalid token!", 401);   
+        throw new AppError("Invalid token!", 409);   
     }
 };
