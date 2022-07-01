@@ -32,8 +32,8 @@ describe("List User Controller", () => {
 
         const { token } = userAuthenticate.body
 
-        const listUser = await request(app).get("/profile").send({
-            user_id: userAuthenticate.body.user_id
+        const listUser = await request(app).get("/profile").query({
+            user_id: userAuthenticate.body.user.user_id
 
         }).set({
             Authorization: `Bearer ${token}` 
@@ -60,8 +60,8 @@ describe("List User Controller", () => {
 
         const { token } = userAuthenticate.body
 
-        const listUser = await request(app).get("/profile").send({
-            user_id: userAuthenticate.body
+        const listUser = await request(app).get("/profile").query({
+            user_id: userAuthenticate.body.user
 
         }).set({
             Authorization: `Bearer ${token}` 
@@ -84,8 +84,8 @@ describe("List User Controller", () => {
             password: "6677"
         });
 
-        const listUser = await request(app).get("/profile").send({
-            user_id: userAuthenticate.body.user_id
+        const listUser = await request(app).get("/profile").query({
+            user_id: userAuthenticate.body.user.user_id
         });
 
         expect(listUser.body).toStrictEqual({ message: "JWT token is missing!" });
@@ -107,15 +107,15 @@ describe("List User Controller", () => {
 
         const { fakeToken } = userAuthenticate.body
 
-        const listUser = await request(app).get("/profile").send({
-            user_id: userAuthenticate.body.user_id
+        const listUser = await request(app).get("/profile").query({
+            user_id: userAuthenticate.body.user.user_id
 
         }).set({
             Authorization: `Bearer ${fakeToken}` 
         });
 
         expect(listUser.body).toStrictEqual({ message: "Invalid token!" });
-        expect(listUser.status).toBe(401);
+        expect(listUser.status).toBe(409);
     });
 
 });
