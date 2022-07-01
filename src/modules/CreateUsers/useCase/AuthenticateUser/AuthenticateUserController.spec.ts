@@ -51,7 +51,7 @@ describe("Authenticate a User Controller", () => {
         });
 
         expect(userAuthenticate.status).toBe(404);
-        expect(userAuthenticate.body).toStrictEqual({ message: "Email or password incorrect!" });
+        expect(userAuthenticate.body).toStrictEqual({ message: "Email incorrect!" });
     });
 
     it("Should not be able to authenticate a User, if (user password) is incorrect", async () => {
@@ -68,7 +68,7 @@ describe("Authenticate a User Controller", () => {
         });
 
         expect(userAuthenticate.status).toBe(401);
-        expect(userAuthenticate.body).toStrictEqual({ message: "Email or password incorrect!" });
+        expect(userAuthenticate.body).toStrictEqual({ message: "Password incorrect!" });
     });
 
 });
