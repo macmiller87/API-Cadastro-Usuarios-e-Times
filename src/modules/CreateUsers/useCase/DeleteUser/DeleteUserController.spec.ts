@@ -32,8 +32,8 @@ describe("Delete User Controller", () => {
 
         const { token } = userAuthenticate.body
 
-        const deleteUser = await request(app).delete("/deleteUser").send({
-            user_id: userAuthenticate.body.user_id
+        const deleteUser = await request(app).delete("/deleteUser").query({
+            user_id: userAuthenticate.body.user.user_id
 
         }).set({
             Authorization: `Bearer ${token}`
@@ -58,8 +58,8 @@ describe("Delete User Controller", () => {
 
         const { token } = userAuthenticate.body
 
-        const deleteUser = await request(app).delete("/deleteUser").send({
-            user_id: userAuthenticate.body
+        const deleteUser = await request(app).delete("/deleteUser").query({
+            user_id: userAuthenticate.body.user
 
         }).set({
             Authorization: `Bearer ${token}`
@@ -82,8 +82,8 @@ describe("Delete User Controller", () => {
             password: "6677"
         });
 
-        const deleteUser = await request(app).delete("/deleteUser").send({
-            user_id: userAuthenticate.body
+        const deleteUser = await request(app).delete("/deleteUser").query({
+            user_id: userAuthenticate.body.user.user_id
         });
 
         expect(deleteUser.body).toStrictEqual({ message: "JWT token is missing!" });
@@ -105,15 +105,15 @@ describe("Delete User Controller", () => {
 
         const { FakeToken } = userAuthenticate.body;
 
-        const deleteUser = await request(app).delete("/deleteUser").send({
-            user_id: userAuthenticate.body
+        const deleteUser = await request(app).delete("/deleteUser").query({
+            user_id: userAuthenticate.body.user.user_id
 
         }).set({
             Authorization: `Bearer ${FakeToken}`
         });
 
         expect(deleteUser.body).toStrictEqual({ message: "Invalid token!" });
-        expect(deleteUser.status).toBe(401);
+        expect(deleteUser.status).toBe(409);
     });
 
 });

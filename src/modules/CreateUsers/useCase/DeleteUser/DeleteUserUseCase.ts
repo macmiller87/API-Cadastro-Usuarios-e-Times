@@ -9,14 +9,13 @@ class DeleteUserUseCase {
 
     async execute(user_id: string): Promise<void> {
 
-        try {
-            await this.usersRepository.findByUserId(user_id);
+        const userId = await this.usersRepository.findByUserId(user_id);
 
-            await this.usersRepository.deleteUser(user_id);
-
-        }catch(error) {
+        if(!userId) {
             throw new AppError("User Not Found!", 404);
         }
+
+        await this.usersRepository.deleteUser(user_id);
     };
 
 };

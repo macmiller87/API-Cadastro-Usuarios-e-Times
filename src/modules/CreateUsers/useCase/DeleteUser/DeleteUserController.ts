@@ -6,11 +6,11 @@ class DeleteUserController {
 
     async handle(request: Request, response: Response): Promise<Response> {
 
-        const { user_id } = request.body;
+        const { user_id } = request.query;
 
         const deleteUserUseCase = container.resolve(DeleteUserUseCase);
 
-        await deleteUserUseCase.execute(user_id);
+        await deleteUserUseCase.execute(user_id as string);
 
         return response.status(200).json({ message: "User Delete with sucess!" });
     };
