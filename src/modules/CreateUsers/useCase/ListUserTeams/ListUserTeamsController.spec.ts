@@ -50,8 +50,8 @@ let connection: DataSource;
             Authorization: `Bearer ${token}`
         });
 
-        const listUserAndTeams = await request(app).get("/profileUserAndTeams").send({
-            user_id: user.body.user_id
+        const listUserAndTeams = await request(app).get("/profileUserAndTeams").query({
+            user_id: userAuthenticate.body.user.user_id
 
         }).set({
             Authorization: `Bearer ${token}`
@@ -104,8 +104,8 @@ let connection: DataSource;
             Authorization: `Bearer ${token}`
         });
 
-        const listUserAndTeams = await request(app).get("/profileUserAndTeams").send({
-            user_id: user.body
+        const listUserAndTeams = await request(app).get("/profileUserAndTeams").query({
+            user_id: userAuthenticate.body.user
 
         }).set({
             Authorization: `Bearer ${token}`
@@ -148,9 +148,8 @@ let connection: DataSource;
             Authorization: `Bearer ${token}`
         });
 
-        const listUserAndTeams = await request(app).get("/profileUserAndTeams").send({
-            user_id: user.body.user_id
-
+        const listUserAndTeams = await request(app).get("/profileUserAndTeams").query({
+            user_id: userAuthenticate.body.user.user_id
         });
 
         expect(listUserAndTeams.body).toStrictEqual({ message: "JWT token is missing!" });
@@ -192,15 +191,15 @@ let connection: DataSource;
 
         const { FakeToken } = userAuthenticate.body;
 
-        const listUserAndTeams = await request(app).get("/profileUserAndTeams").send({
-            user_id: user.body.user_id
+        const listUserAndTeams = await request(app).get("/profileUserAndTeams").query({
+            user_id: userAuthenticate.body.user.user_id
 
         }).set({
             Authorization: `Bearer ${FakeToken}`
         });
 
         expect(listUserAndTeams.body).toStrictEqual({ message: "Invalid token!" });
-        expect(listUserAndTeams.statusCode).toBe(401);
+        expect(listUserAndTeams.statusCode).toBe(409);
     });
 
 });
