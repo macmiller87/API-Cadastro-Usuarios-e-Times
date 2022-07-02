@@ -131,7 +131,7 @@ let connection: DataSource;
         });
 
         expect(createUserTeam.body).toStrictEqual({ message: "Invalid token!" });
-        expect(createUserTeam.statusCode).toBe(401);
+        expect(createUserTeam.statusCode).toBe(409);
     });
 
  });
