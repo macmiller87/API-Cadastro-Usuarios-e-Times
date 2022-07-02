@@ -236,6 +236,237 @@
                     }
                 }
             }
+        },
+        "/profileUserAndTeams": {
+            "get": {
+                "tags": ["Users"],
+                "summary": "List User and Teams",
+                "description": "List User and Teams",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "user_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "properties": [
+                                            {
+                                                "user_id": {
+                                                    "type": "string"
+                                                },
+                                                "username": {
+                                                    "type": "string"
+                                                },
+                                                "userAvatar": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "password": {
+                                                    "type": "string"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "teams": [
+                                                    {
+                                                        "team_id": {
+                                                            "type": "string"
+                                                        },
+                                                        "user_id": {
+                                                            "type": "string"
+                                                        },
+                                                        "teamName": {
+                                                            "type": "string"
+                                                        },
+                                                        "city": {
+                                                            "type": "string"
+                                                        },
+                                                        "country": {
+                                                            "type": "string"
+                                                        },
+                                                        "created_at": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "user_id": "357d7aad-d1f3-4357-a26a-82d92de9f0e0",
+                                        "username": "username sample",
+                                        "userAvatar": "useravatar sample",
+                                        "email": "user email",
+                                        "password":"user password encrypted",
+                                        "created_at": "2022-06-30T02:34:35.623Z",
+                                        "teams": [
+                                            {
+                                                "team_id": "7597ba1d-689b-4293-a76e-46e684b0d2ec",
+                                                "user_id": "357d7aad-d1f3-4357-a26a-82d92de9f0e0",
+                                                "teamName": "teamname sample",
+                                                "city": "city sample",
+                                                "country": "country sample",
+                                                "created_at": "2022-06-30T21:26:36.478Z"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "JWT token is missing!"
+                    },
+                    "404": {
+                        "description": "User Not Found!"
+                    },
+                    "409": {
+                        "description": "Invalid token!"
+                    }
+                }
+            }
+        },
+        "/deleteUser": {
+            "delete": {
+                "tags": ["Users"],
+                "summary": "Delete a User",
+                "description": "Delete a User",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "user_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Delete with sucess!"
+                    },
+                    "401": {
+                        "description": "JWT token is missing!"
+                    },
+                    "404": {
+                        "description": "User Not Found!"
+                    },
+                    "409": {
+                        "description": "Invalid token!"
+                    }
+                }
+            }
+        },
+        "/createUserTeams": {
+            "post": {
+                "tags": ["Teams"],
+                "summary": "Create User Teams",
+                "description": "Create User Teams",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "teamName": {
+                                        "type": "string"
+                                    },
+                                    "city": {
+                                        "type": "string"
+                                    },
+                                    "country": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "description": "Mandatory fields for create User Team",
+                            "example": {
+                                "teamName": "teamname sample",
+                                "city": "city sample",
+                                "country":"country sample"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "team_id": {
+                                                "type": "string"
+                                            },
+                                            "user_id": {
+                                                "type": "string"
+                                            },
+                                            "teamName": {
+                                                "type": "string"
+                                            },
+                                            "city": {
+                                                "type": "string"
+                                            },
+                                            "country": {
+                                                "type": "string"
+                                            },
+                                            "created_at": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "team_id": "357d7aad-d1f3-4357-a26a-82d92de9f0e0",
+                                        "user_id": "bb16df2b-462a-483e-8257-f82924a19dea",
+                                        "teamName":"teamname sample",
+                                        "city":"city sample",
+                                        "country": "country sample",
+                                        "created_at": "2022-06-30T21:26:36.478Z"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Team Already Exists!"
+                    },
+                    "401": {
+                        "description": "JWT token is missing!"
+                    },
+                    "409": {
+                        "description": "Invalid token!"
+                    }
+                }
+            }
         }
     },
     "components": {
