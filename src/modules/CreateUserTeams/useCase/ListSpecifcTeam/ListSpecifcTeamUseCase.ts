@@ -9,15 +9,14 @@ class ListSpecificTeamUseCase {
     constructor(@inject("TeamsRepository") private teamsRepository: IUsersTeamsRepository) {};
 
     async execute(team_id: string): Promise<Teams[]> {
+        
+        const getTeam = await this.teamsRepository.listSpecifTeam(team_id);
 
-        try {
-            const getTeam = await this.teamsRepository.listSpecifTeam(team_id);
-
-            return getTeam;
-
-        }catch(error) {
+        if(!getTeam.length) {
             throw new AppError("Team Not Found!", 404);
         }
+
+        return getTeam;
     };
 
 };

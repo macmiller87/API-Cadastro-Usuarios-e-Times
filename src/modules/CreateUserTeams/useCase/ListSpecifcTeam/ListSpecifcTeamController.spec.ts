@@ -32,7 +32,7 @@ let connection: DataSource;
 
         const { token } = userAuthenticate.body;
 
-        await request(app).post("/createUserTeams").send({
+        const userTeam = await request(app).post("/createUserTeams").send({
             teamName: "F. C. Barcelona",
             city: "Barcelona",
             country: "Espanha"
@@ -41,8 +41,8 @@ let connection: DataSource;
             Authorization: `Bearer ${token}`
         });
 
-        const listSpecificTeam = await request(app).get("/listSpecifTeam").send({
-            team_id: userAuthenticate.body.team_id
+        const listSpecificTeam = await request(app).get("/listSpecifcTeam").query({
+            team_id: userTeam.body.team_id
 
         }).set({
             Authorization: `Bearer ${token}`
@@ -71,22 +71,22 @@ let connection: DataSource;
         const { token } = userAuthenticate.body;
 
         await request(app).post("/createUserTeams").send({
-            teamName: "F. C. Barcelona",
-            city: "Barcelona",
-            country: "Espanha"
+            teamName: "S. C. Corinthians Paulista",
+            city: "São Paulo",
+            country: "Brasil"
+
+        }).set({
+            Authorization: `Bearer ${token}`
+        });
+                                      
+        const listSpecificTeam = await request(app).get("/listSpecifcTeam").query({
+            team_id: process.env.FAKE_ID
 
         }).set({
             Authorization: `Bearer ${token}`
         });
 
-        const listSpecificTeam = await request(app).get("/listSpecifTeam").send({
-            team_id: userAuthenticate.body
-
-        }).set({
-            Authorization: `Bearer ${token}`
-        });
-
-        expect(listSpecificTeam.body).toStrictEqual({ message: "Team Not Found!" });
+        expect(listSpecificTeam.body).toStrictEqual({ message: "Team Not Found!" })
         expect(listSpecificTeam.statusCode).toBe(404);
     });
 
@@ -105,7 +105,7 @@ let connection: DataSource;
 
         const { token } = userAuthenticate.body;
 
-        await request(app).post("/createUserTeams").send({
+        const userTeam = await request(app).post("/createUserTeams").send({
             teamName: "F. C. Barcelona",
             city: "Barcelona",
             country: "Espanha"
@@ -114,8 +114,8 @@ let connection: DataSource;
             Authorization: `Bearer ${token}`
         });
 
-        const listSpecificTeam = await request(app).get("/listSpecifTeam").send({
-            team_id: userAuthenticate.body.team_id
+        const listSpecificTeam = await request(app).get("/listSpecifcTeam").query({
+            team_id: userTeam.body.team_id
         });
 
         expect(listSpecificTeam.body).toStrictEqual({ message: "JWT token is missing!" });
@@ -137,7 +137,7 @@ let connection: DataSource;
 
         const { token } = userAuthenticate.body;
 
-        await request(app).post("/createUserTeams").send({
+        const userTeam = await request(app).post("/createUserTeams").send({
             teamName: "F. C. Barcelona",
             city: "Barcelona",
             country: "Espanha"
@@ -148,15 +148,15 @@ let connection: DataSource;
 
         const { FakeToken } = userAuthenticate.body;
 
-        const listSpecificTeam = await request(app).get("/listSpecifTeam").send({
-            team_id: userAuthenticate.body.team_id
+        const listSpecificTeam = await request(app).get("/listSpecifcTeam").query({
+            team_id: userTeam.body.team_id
 
         }).set({
             Authorization: `Bearer ${FakeToken}`
         });
 
         expect(listSpecificTeam.body).toStrictEqual({ message: "Invalid token!" });
-        expect(listSpecificTeam.statusCode).toBe(401);
+        expect(listSpecificTeam.statusCode).toBe(409);
     });
 
 });
