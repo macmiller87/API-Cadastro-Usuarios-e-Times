@@ -6,7 +6,7 @@ import { router } from ".";
 import { DeletSpecifcTeamController } from "@modules/CreateUserTeams/useCase/DeleteUserTeam/DeleteSpecifcTeamController";
 
 const createUserTeamsRoute = Router();
-const listSpecifTeamRoute = Router();
+const listSpecifcTeamRoute = Router();
 const deleteSpecifcTeamRoute = Router();
 
 const createUserTeamsController = new CreateUserTeamsController();
@@ -14,11 +14,11 @@ const listSpecifcTeamController = new ListSpecifcTeamController();
 const deleteSpecificTeamController = new DeletSpecifcTeamController();
 
 createUserTeamsRoute.use(ensureUserAuthenticate);
-listSpecifTeamRoute.use(ensureUserAuthenticate);
+listSpecifcTeamRoute.use(ensureUserAuthenticate);
 deleteSpecifcTeamRoute.use(ensureUserAuthenticate);
 
 createUserTeamsRoute.post("/", createUserTeamsController.handle);
-listSpecifTeamRoute.get("/", listSpecifcTeamController.handle);
+listSpecifcTeamRoute.get("/", listSpecifcTeamController.handle);
 deleteSpecifcTeamRoute.delete("/", deleteSpecificTeamController.handle);
 
-export { createUserTeamsRoute, listSpecifTeamRoute, deleteSpecifcTeamRoute };
+export { createUserTeamsRoute, listSpecifcTeamRoute, deleteSpecifcTeamRoute };

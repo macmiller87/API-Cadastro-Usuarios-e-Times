@@ -105,7 +105,7 @@ let connection: DataSource;
         });
 
         const listUserAndTeams = await request(app).get("/profileUserAndTeams").query({
-            user_id: userAuthenticate.body.user
+            user_id: process.env.FAKE_ID
 
         }).set({
             Authorization: `Bearer ${token}`

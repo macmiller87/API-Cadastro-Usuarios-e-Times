@@ -56,10 +56,10 @@ describe("Delete User Controller", () => {
             password: "6677"
         });
 
-        const { token } = userAuthenticate.body
+        const { token } = userAuthenticate.body;
 
         const deleteUser = await request(app).delete("/deleteUser").query({
-            user_id: userAuthenticate.body.user
+            user_id: process.env.FAKE_ID
 
         }).set({
             Authorization: `Bearer ${token}`

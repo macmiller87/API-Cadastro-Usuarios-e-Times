@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { AuthenticateUserRoute } from "./AuthenticateUser.routes";
 import { CreateUserRoute, listUserRoute, listUserAndTeamsRoute, deleteUserRoute, } from "./Users.routes";
-import { createUserTeamsRoute, listSpecifTeamRoute, deleteSpecifcTeamRoute } from "./CreateUserTeams.routes";
+import { createUserTeamsRoute, listSpecifcTeamRoute, deleteSpecifcTeamRoute } from "./CreateUserTeams.routes";
 
 const router = Router();
 
@@ -12,7 +12,7 @@ router.use("/profileUserAndTeams", listUserAndTeamsRoute);
 router.use("/deleteUser", deleteUserRoute);
 
 router.use("/createUserTeams", createUserTeamsRoute);
-router.use("/listSpecifTeam", listSpecifTeamRoute);
-router.use("/deleteTeam", deleteSpecifcTeamRoute);
+router.use("/listSpecifcTeam", listSpecifcTeamRoute);
+router.use("/deleteSpecifcTeam", deleteSpecifcTeamRoute);
 
 export { router };
