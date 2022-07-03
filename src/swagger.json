@@ -467,6 +467,114 @@
                     }
                 }
             }
+        },
+        "/listSpecifcTeam": {
+            "get": {
+                "tags": ["Teams"],
+                "summary": "List Specifc Team",
+                "description": "List Specifc Team",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "team_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "team_id": {
+                                                "type": "string"
+                                            },
+                                            "user_id": {
+                                                "type": "string"
+                                            },
+                                            "teamName": {
+                                                "type": "string"
+                                            },
+                                            "city": {
+                                                "type": "string"
+                                            },
+                                            "country": {
+                                                "type": "string"
+                                            },
+                                            "created_at": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "team_id": "357d7aad-d1f3-4357-a26a-82d92de9f0e0",
+                                        "user_id": "7597ba1d-689b-4293-a76e-46e684b0d2ec",
+                                        "teamName": "teamname sample",
+                                        "city": "city sample",
+                                        "country": "country sample",
+                                        "created_ta": "2022-06-30T21:26:36.478Z"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "JWT token is missing!"
+                    },
+                    "404": {
+                        "description": "Team Not Found!"
+                    },
+                    "409": {
+                        "description": "Invalid token!"
+                    }
+                }
+            }
+        },
+        "/deleteSpecifcTeam": {
+            "delete": {
+                "tags": ["Teams"],
+                "summary": "Delete a SpecifcTeam",
+                "description": "Delete a SpecifcTeam",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "team_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Team Delete with sucess!"
+                    },
+                    "401": {
+                        "description": "JWT token is missing!"
+                    },
+                    "404": {
+                        "description": "Team Not Found!"
+                    },
+                    "409": {
+                        "description": "Invalid token!"
+                    }
+                }
+            }
         }
     },
     "components": {
