@@ -9,14 +9,13 @@ class DeleteSpecifcTeamUseCase {
 
     async execute(team_id: string): Promise<void> {
 
-        try {
-            await this.teamsRepository.findByTeamId(team_id);
+        const teamId = await this.teamsRepository.findByTeamId(team_id);
 
-            await this.teamsRepository.deleteTeam(team_id);
-
-        }catch(error) {
-            throw new AppError("Team Not Found!", 404);     
+        if(!teamId) {
+            throw new AppError("Team Not Found!", 404);
         }
+
+        await this.teamsRepository.deleteTeam(team_id);           
     };
 
 };

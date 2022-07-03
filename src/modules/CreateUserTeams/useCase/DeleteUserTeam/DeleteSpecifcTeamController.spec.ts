@@ -41,15 +41,15 @@ let connection: DataSource;
             Authorization: `Bearer ${token}`
         });
 
-        const deleteSpecifiTeam = await request(app).delete("/deleteTeam").send({
+        const deleteSpecificTeam = await request(app).delete("/deleteSpecifcTeam").query({
             team_id: createTeam.body.team_id
 
         }).set({
             Authorization: `Bearer ${token}`
         });
 
-        expect(deleteSpecifiTeam.body).toStrictEqual({ message: "Team Delete with sucess!" });
-        expect(deleteSpecifiTeam.statusCode).toBe(200);
+        expect(deleteSpecificTeam.body).toStrictEqual({ message: "Team Delete with sucess!" });
+        expect(deleteSpecificTeam.statusCode).toBe(200);
     });
 
     it("Should be able to delete a Specific Team, if (team_id) is incorrect", async () => {
@@ -67,7 +67,7 @@ let connection: DataSource;
 
         const { token } = userAuthenticate.body;
 
-        const createTeam = await request(app).post("/createUserTeams").send({
+        await request(app).post("/createUserTeams").send({
             teamName: "Real Madrid F. C.",
             city: "Madrid",
             country: "Espanha"
@@ -76,15 +76,15 @@ let connection: DataSource;
             Authorization: `Bearer ${token}`
         });
 
-        const deleteSpecifiTeam = await request(app).delete("/deleteTeam").send({
-            team_id: createTeam.body
+        const deleteSpecificTeam = await request(app).delete("/deleteSpecifcTeam").query({
+            team_id: process.env.FAKE_ID
 
         }).set({
             Authorization: `Bearer ${token}`
         });
 
-        expect(deleteSpecifiTeam.body).toStrictEqual({ message: "Team Not Found!" });
-        expect(deleteSpecifiTeam.statusCode).toBe(404);
+        expect(deleteSpecificTeam.body).toStrictEqual({ message: "Team Not Found!" });
+        expect(deleteSpecificTeam.statusCode).toBe(404);
     });
 
     it("Should be able to delete a Specific Team, if the User does not have a (Token)", async () => {
@@ -111,12 +111,12 @@ let connection: DataSource;
             Authorization: `Bearer ${token}`
         });
 
-        const deleteSpecifiTeam = await request(app).delete("/deleteTeam").send({
+        const deleteSpecificTeam = await request(app).delete("/deleteSpecifcTeam").query({
             team_id: createTeam.body.team_id
         });
 
-        expect(deleteSpecifiTeam.body).toStrictEqual({ message: "JWT token is missing!" });
-        expect(deleteSpecifiTeam.statusCode).toBe(401);
+        expect(deleteSpecificTeam.body).toStrictEqual({ message: "JWT token is missing!" });
+        expect(deleteSpecificTeam.statusCode).toBe(401);
     });
 
     it("Should be able to delete a Specific Team, if the User does not have a valid (Token)", async () => {
@@ -145,15 +145,15 @@ let connection: DataSource;
 
         const { FakeToken } = userAuthenticate.body;
 
-        const deleteSpecifiTeam = await request(app).delete("/deleteTeam").send({
+        const deleteSpecificTeam = await request(app).delete("/deleteSpecifcTeam").query({
             team_id: createTeam.body.team_id
 
         }).set({
             Authorization: `Bearer ${FakeToken}`
         });
 
-        expect(deleteSpecifiTeam.body).toStrictEqual({ message: "Invalid token!" });
-        expect(deleteSpecifiTeam.statusCode).toBe(401);
+        expect(deleteSpecificTeam.body).toStrictEqual({ message: "Invalid token!" });
+        expect(deleteSpecificTeam.statusCode).toBe(409);
     });
 
 });

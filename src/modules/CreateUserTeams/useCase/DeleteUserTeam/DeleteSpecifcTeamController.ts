@@ -6,11 +6,11 @@ class DeletSpecifcTeamController {
 
     async handle(request: Request, response: Response): Promise<Response> {
 
-        const { team_id } = request.body;
+        const { team_id } = request.query;
 
         const deleteSpecifcTeamUseCase = container.resolve(DeleteSpecifcTeamUseCase);
 
-        await deleteSpecifcTeamUseCase.execute(team_id);
+        await deleteSpecifcTeamUseCase.execute(team_id as string);
 
         return response.status(200).json({ message: "Team Delete with sucess!" });
     };
