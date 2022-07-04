@@ -8,7 +8,7 @@
 
 - Projeto na versão 2 com integração ao BD postgres.
 
-- Nesta aplicação está sendo feita uma API, que é possível cadastrar `usuário com (username, userAvatar)`, a aplicação gera um `user_id` único randômico para o usúario, também é possível cadastrar `times de futebol com (nome, cidade e pais)`,a aplicação gera um `team_id` único randômico para o time, desde que exista um `usuário` já cadastrado para poder fazer o cadastro dos times, essa verificação é feita pelo `user_id` do usuário, também é possível listar todos usuários criados, e seus respectivos times cadastrados, deletar usuários e times e etc.
+- Nesta aplicação está sendo feita uma API, que é possível cadastrar `usuário com (username, userAvatar, email e password)`, a aplicação gera um `user_id` único randômico para o usúario, também é possível cadastrar `times de futebol com (nome, cidade e pais)`,a aplicação gera um `team_id` único randômico para o time, desde que exista um `usuário` já cadastrado para poder fazer o cadastro dos times, essa verificação é feita pelo `user_id` do usuário, também é possível listar todos usuários criados, e seus respectivos times cadastrados, deletar usuários e times e etc.
 - Após a criação do Usuário, é necessário "Authentica" o mesmo para poder seguir com as outras rotas da aplicação, a autenticação é feita pelo `email` e `password` do usuário cadastrado, gerando assim o `Token`, para esse usuário, o qual é necessário em todas as rotas, exceto a `createUser`, e `/sessions`, obviamente.
 
 ## 🚀 Como executar
